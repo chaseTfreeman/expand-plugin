@@ -9,7 +9,15 @@ $(document).ready(function() {
   var quotes = $('.quotes li').each(function(){
     quotesArray.push($(this).text());
   })
+  for (i = 0; i < quotesArray.length; i++){
+    var quote = quotesArray[i];
+    var shortQuote = jQuery.trim(quote).substring()
+    .split(" ").slice(0, 14).join(" ") + "...";
+    console.log(shortQuote);
+  };
 
 
-}
-);
+
+
+
+});
