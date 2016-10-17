@@ -8,17 +8,27 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 
 
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
-(function($){
-  $.fn.expandify = function(){
-  var quotes = $('ul.quotes');
-  quotes.each(function(){
-    var ths = $(this).text();
-    console.log(ths);
-    if(ths.length < 100) return ;
-    $(this).html(
-      ths.slice(0,15)+'<span>... </span><a href="#" class="expand">READ MORE</a>'+
-            '<span style="display:none;">'+ ths.slice(15,ths.length)+' <a href="#" class="less">Read Less</a></span>'
-        );
-  });
-}(JQuery);
-})
+
+(function ( $ ) {
+  $.fn.collapser = function() {
+
+    // extract sources:
+    var sources = $(this).find('a')
+    // console.log(sources);
+    // Iterate through Li's, push quotes to array
+    var quotesArray = []
+    var quotes = $(this).each(function(){
+      quotesArray.push($(this).text());
+    })
+    for (i = 0; i < quotesArray.length; i++){
+      var source = sources.eq(i).html();
+      sourceHref = sources.eq(i).attr('href')
+      var quote = quotesArray[i];
+
+      $(this[i]).each(function(){
+      $(this).html($.trim(quote).substring()
+      .split(" ").slice(0, 15).join(" ") + "... -- " + "<a href=" + sourceHref + "target='_blank' rel='nofollow'>" + source + "</a>" + "<br>" + "<a href='#'>" + 'Read More' + "</a>" + "<br>")
+        })
+    };
+  };
+}( jQuery ));
