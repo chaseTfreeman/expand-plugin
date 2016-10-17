@@ -11,7 +11,6 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 
 (function ( $ ) {
   $.fn.collapser = function() {
-
     // extract sources:
     var sources = $(this).find('a')
     // console.log(sources);
@@ -30,5 +29,6 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
       .split(" ").slice(0, 15).join(" ") + "... -- " + "<a href=" + sourceHref + "target='_blank' rel='nofollow'>" + source + "</a>" + "<br>" + "<a href='#'>" + 'Read More' + "</a>" + "<br>")
         })
     };
+
   };
 }( jQuery ));
