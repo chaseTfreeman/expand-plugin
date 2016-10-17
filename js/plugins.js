@@ -8,4 +8,17 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 
 
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
-
+(function($){
+  $.fn.expandify = function(){
+  var quotes = $('ul.quotes');
+  quotes.each(function(){
+    var ths = $(this).text();
+    console.log(ths);
+    if(ths.length < 100) return ;
+    $(this).html(
+      ths.slice(0,15)+'<span>... </span><a href="#" class="expand">READ MORE</a>'+
+            '<span style="display:none;">'+ ths.slice(15,ths.length)+' <a href="#" class="less">Read Less</a></span>'
+        );
+  });
+}(JQuery);
+})
