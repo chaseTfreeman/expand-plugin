@@ -1,12 +1,12 @@
 # U.S. News Best Cars Exercise
 
-For this exercise, create a jQuery plugin that cosumes list that contains quotes 
+For this exercise, create a jQuery plugin that cosumes list that contains quotes
 and source links and returns the list with the truncated quotes and a read more button.
 
-The truncated quotes must show 15 words max (not including the source link) and should 
-be followed by and ellipses, the source link and a "Read More" link. If the quote is less 
-than 15 words, nothing would need to happen to that list element. Clicking "Read More" 
-would show the entire quote, the source link and a "Read Less" link. Please refer to the 
+The truncated quotes must show 15 words max (not including the source link) and should
+be followed by and ellipses, the source link and a "Read More" link. If the quote is less
+than 15 words, nothing would need to happen to that list element. Clicking "Read More"
+would show the entire quote, the source link and a "Read Less" link. Please refer to the
 mocks for further clarification.
 
 Please assume the area of HTML marked "NO EDIT" cannot be edited in any way. Although only
