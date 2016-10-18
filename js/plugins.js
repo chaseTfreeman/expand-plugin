@@ -11,17 +11,6 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 
 (function ( $ ) {
 
-  // fullQuotesArray = []
-  // fullQuotes = $(this).each(function(){
-  //   fullQuotesArray.push($(this).text());
-  // });
-  //   for (i = 0; i < fullQuotesArray.length; i++){
-  //     var fullQuote = $(this[i])
-  //     $(this[i]).removeClass('collapsedQuote')
-  //     $(this[i]).addClass('fullQuote')
-  //   }
-
-
   $.fn.collapser = function() {
     // extract sources:
     var sources = $(this).find('a')
@@ -31,33 +20,33 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
       quotesArray.push($(this).addClass('quoteClass').text());
     })
     for (i = 0; i < quotesArray.length; i++){
-      var source = sources.eq(i).html();
-      var sourceHref = sources.eq(i).attr('href')
+
+      var collapsedQuotes = $(".quoteClass")
+      collapsedQuotes.each(function(i, val){
+        quote = $(this).text();
+        var source = sources.eq(i).html();
+        var sourceHref = sources.eq(i).attr('href')
+
+        if (quote.split(" ").length < 15) return;
+
+        var readLessHtml = "<span style = display:none; class='readLess'><a href=# target='_blank' rel='nofollow'>" + source + "</a>" + "<br>" + "<a href='#' id='readLess'>" + 'Read Less' + "</a>" + "</span>"
+
+        var shortQuote =  $(this).html(
+          $.trim(quote).substring().split(" ").slice(0, 15).join(" ") + ". -- " + "<span class='readMore'><a href=# target='_blank' rel='nofollow'>" + source + "</a>" + "<br>" + "<a href=" + sourceHref + "id='readMore'>" + 'Read More' + "</a>" + "</span>" + readLessHtml
+        );
+
+        $(".readMore").click(function(e){
+          e.preventDefault()
+          $(this).parent().text(quotesArray[i]).append("<span class='readLess'><a href=# target='_blank' rel='nofollow'>" + source + "</a>" + "<br>" + "<a href=" + sourceHref + " id='readLess'>" + 'Read Less' + "</a>" + "</span>")
+          $(".readLess").click(function(e){
+            e.preventDefault()
+            $(this).parent().html($.trim(quotesArray[i]).substring().split(" ").slice(0, 15).join(" ") + "... -- " + "<span class='readMore'><a href=# target='_blank' rel='nofollow'>" + source + "</a>" + "<br>" + "<a href='#' id='readMore'>" + 'Read More' + "</a>" + "</span>" + readLessHtml)
+          });
+        });
 
 
-    var collapsedQuotes = $(".quoteClass")
-    collapsedQuotes.each(function(i, val){
-      quote = $(this).text();
-
-      if (quote.split(" ").length < 15) return;
-
-      var readLessHtml = "<span style = display:none; class='readLess'><a href=# target='_blank' rel='nofollow'>" + source + "</a>" + "<br>" + "<a href='#' id='readLess'>" + 'Read Less' + "</a>" + "</span>"
-
-      var shortQuote =  $(this).html(
-        $.trim(quote).substring().split(" ").slice(0, 15).join(" ") + "... -- " + "<span class='readMore'><a href=# target='_blank' rel='nofollow'>" + source + "</a>" + "<br>" + "<a href='#' id='readMore'>" + 'Read More' + "</a>" + "</span>" + readLessHtml
-      );
-
-      $(".readMore").click(function(e){
-        e.preventDefault()
-        $(this).parent().text(quotesArray[i])
-      });
-
-
-      $(".readLess", collapsedQuotes).click(function(event){
-
-      });
-    })
-}
+      })
+    }
 
   };
 }(jQuery));
