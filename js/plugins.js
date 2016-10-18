@@ -24,8 +24,8 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
       var collapsedQuotes = $(".quoteClass")
       collapsedQuotes.each(function(i, val){
         quote = $(this).text();
-        var source = sources.eq(i).html();
-        var sourceHref = sources.eq(i).attr('href')
+        var source = sources.eq(i).html() || "Anonymous";
+        var sourceHref = sources.eq(i).attr('href');
 
         if (quote.split(" ").length < 15) return;
 
