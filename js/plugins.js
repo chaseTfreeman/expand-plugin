@@ -8,19 +8,20 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 
 
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
+// Author: Chase Freeman
 
 (function ( $ ) {
 
   $.fn.collapser = function() {
-    // extract sources:
+    // extract quote sources:
     var sources = $(this).find('a')
     // Iterate through li's, push quotes to array
     var quotesArray = []
-    var quotes = $(this).each(function(i){
+    var quotes = $(this).each(function(){
       quotesArray.push($(this).addClass('quoteClass').text());
     })
+    // iterate through array of quotes, trim each quote (or return), add sources and ellipses.
     for (i = 0; i < quotesArray.length; i++){
-
       var collapsedQuotes = $(".quoteClass")
       collapsedQuotes.each(function(i, val){
         quote = $(this).text();
@@ -34,7 +35,7 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
         var shortQuote =  $(this).html(
           $.trim(quote).substring().split(" ").slice(0, 15).join(" ") + ". -- " + "<span class='readMore'><a href=# target='_blank' rel='nofollow'>" + source + "</a>" + "<br>" + "<a href=" + sourceHref + "id='readMore'>" + 'Read More' + "</a>" + "</span>" + readLessHtml
         );
-
+          // click functions for Read More/Read Less
         $(".readMore").click(function(e){
           e.preventDefault()
           $(this).parent().text(quotesArray[i]).append("<span class='readLess'><a href=# target='_blank' rel='nofollow'>" + source + "</a>" + "<br>" + "<a href=" + sourceHref + " id='readLess'>" + 'Read Less' + "</a>" + "</span>")
